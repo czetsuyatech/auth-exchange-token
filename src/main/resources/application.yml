@@ -1,0 +1,26 @@
+logging:
+  level:
+    root: info
+    com.sens: debug
+
+spring:
+  security:
+    oauth2:
+#      client:
+#        registration:
+#          google:
+#            client-id: xxx
+#            client-secret: xxx
+#            scope:
+#              - openid
+#              - profile
+#              - email
+      resourceserver:
+        jwt:
+          # https://accounts.google.com/.well-known/openid-configuration
+          issuer-uri: https://accounts.google.com
+          jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
+#        opaque-token:
+#          introspection-uri: https://oauth2.googleapis.com/tokeninfo
+#          client-id: xxx
+#          client-secret: xxx
