@@ -9,17 +9,17 @@ server:
 spring:
   security:
     oauth2:
-      client:
-        registration:
-          keycloak:
-            client-id: web-front
-            authorization-grant-type: authorization_code
-            scope:
-              - openid
-        provider:
-          keycloak:
-            issuer-uri: http://localhost:8080/realms/czetsuyatech
-            user-name-attribute: preferred_username
+#      client:
+#        registration:
+#          keycloak:
+#            client-id: web-front
+#            authorization-grant-type: authorization_code
+#            scope:
+#              - openid
+#        provider:
+#          keycloak:
+#            issuer-uri: http://localhost:8080/realms/czetsuyatech
+#            user-name-attribute: preferred_username
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8080/realms/czetsuyatech
