@@ -9,3 +9,4 @@ services:
     environment:
       KEYCLOAK_ADMIN: keycloak.admin
       KEYCLOAK_ADMIN_PASSWORD: keycloak.admin
+      KC_FEATURES: token-exchange,admin-fine-grained-authz
