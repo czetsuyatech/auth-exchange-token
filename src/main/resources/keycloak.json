@@ -4,7 +4,7 @@
   "ssl-required": "external",
   "resource": "web-front",
   "credentials": {
-    "secret": "BxYWD11qCAW6ZybPTy6b9M8ej0thTby7"
+    "secret": "6qBBGepsm8Kphf2wFGUwiFspPErweyqF"
   },
   "confidential-port": 0
 }

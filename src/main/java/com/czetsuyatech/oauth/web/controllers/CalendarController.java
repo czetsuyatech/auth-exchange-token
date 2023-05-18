@@ -1,5 +1,6 @@
 package com.czetsuyatech.oauth.web.controllers;
 
+import com.czetsuyatech.oauth.services.CalendarService;
 import com.czetsuyatech.oauth.web.exchange.GoogleToken;
 import com.czetsuyatech.oauth.web.exchange.TokenExchange;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,10 @@ public class CalendarController {
 
   @GoogleToken
   private final TokenExchange tokenExchange;
+//
+//  private final GoogleCalendarClient googleCalendarClient;
+
+  private final CalendarService calendarService;
 
   @GetMapping("/calendars/entries")
   public String entries() {
@@ -32,6 +37,8 @@ public class CalendarController {
 
     HttpEntity<String> entity = new HttpEntity<>(null, headers);
     ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+
+//    String response = calendarService.getCalendarEntries(tokenExchange,10);
 
     log.debug(response.getBody());
 
