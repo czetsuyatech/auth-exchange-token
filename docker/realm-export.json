@@ -423,8 +423,8 @@
   "otpPolicyPeriod": 30,
   "otpPolicyCodeReusable": false,
   "otpSupportedApplications": [
-    "totpAppFreeOTPName",
     "totpAppGoogleName",
+    "totpAppFreeOTPName",
     "totpAppMicrosoftAuthenticatorName"
   ],
   "webAuthnPolicyRpEntityName": "keycloak",
@@ -1667,7 +1667,7 @@
         "syncMode": "IMPORT",
         "userIp": "false",
         "clientSecret": "**********",
-        "defaultScope": "email profile openid"
+        "defaultScope": "email profile openid https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events"
       }
     }
   ],
