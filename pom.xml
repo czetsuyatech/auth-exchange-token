@@ -12,7 +12,7 @@
   <groupId>com.czetsuyatech</groupId>
   <artifactId>auth-exchange</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Spring Google SignOn</name>
+  <name>Auth Exchange</name>
 
   <properties>
     <java.version>17</java.version>
@@ -68,6 +68,16 @@
       <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-calendar</artifactId>
       <version>v3-rev20220715-2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.apis</groupId>
+      <artifactId>google-api-services-gmail</artifactId>
+      <version>v1-rev20230206-2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.http-client</groupId>
+      <artifactId>google-http-client-jackson</artifactId>
+      <version>1.29.2</version>
     </dependency>
 
     <dependency>

@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "8b914548-652c-4164-bc7b-e4e679e9a9bb",
-		"name": "spring-google-signon",
+		"name": "Auth Exchange",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "2537239"
 	},
@@ -163,7 +163,7 @@
 			"response": []
 		},
 		{
-			"name": "Calendar entries",
+			"name": "Get calendar entries",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -188,6 +188,36 @@
 						"api",
 						"calendars",
 						"entries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get messages",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearerToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/messages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"messages"
 					]
 				}
 			},
