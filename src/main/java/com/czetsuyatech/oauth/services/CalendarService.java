@@ -1,8 +1,8 @@
 package com.czetsuyatech.oauth.services;
 
-import com.czetsuyatech.oauth.web.exchange.TokenExchange;
+import com.google.api.services.calendar.model.CalendarList;
 
 public interface CalendarService {
 
-  String getCalendarEntries(TokenExchange tokenExchange, int maxResults);
+  CalendarList getCalendarEntries(int maxResults);
 }
