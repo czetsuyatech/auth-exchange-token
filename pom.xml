@@ -10,9 +10,9 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.czetsuyatech</groupId>
-  <artifactId>auth-exchange</artifactId>
+  <artifactId>auth-exchange-token</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Auth Exchange</name>
+  <name>Auth Token Exchange</name>
 
   <properties>
     <java.version>17</java.version>
