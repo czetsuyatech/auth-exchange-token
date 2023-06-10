@@ -1,6 +1,5 @@
 package com.czetsuyatech.oauth.web.exchange;
 
-import lombok.RequiredArgsConstructor;
 import org.keycloak.authorization.client.AuthzClient;
 import org.keycloak.authorization.client.Configuration;
 import org.keycloak.representations.AccessTokenResponse;
@@ -14,15 +13,11 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-@GoogleToken
 @Component
-@RequiredArgsConstructor
-public class GoogleTokenExchanger implements TokenExchange {
-
-  private final BearerTokenWrapper bearerTokenWrapper;
+public class GoogleTokenExchange implements TokenExchange {
 
   @Override
-  public String exchangeToken() {
+  public String exchangeToken(String accessToken) {
 
     AuthzClient authzClient = AuthzClient.create();
     Configuration keycloakConfig = authzClient.getConfiguration();
@@ -39,7 +34,7 @@ public class GoogleTokenExchanger implements TokenExchange {
     requestBody.add("client_secret", keycloakConfig.getCredentials().get("secret").toString());
     requestBody.add("grant_type", "urn:ietf:params:oauth:grant-type:token-exchange");
     requestBody.add("subject_token_type", "urn:ietf:params:oauth:token-type:access_token");
-    requestBody.add("subject_token", bearerTokenWrapper.getToken());
+    requestBody.add("subject_token", accessToken);
     requestBody.add("requested_issuer", "google");
 
     HttpEntity formEntity = new HttpEntity<>(requestBody, headers);
