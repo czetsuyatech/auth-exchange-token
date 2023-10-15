@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Email Message</title>
+</head>
+<body>
+<h1>Email Message</h1>
+
+<table style="border-spacing: 2px; border: 1px solid black;">
+  <tr>
+    <th>Id</th>
+    <th>Message</th>
+  </tr>
+  <tr>
+    <td><span th:text="${message.id}"/></td>
+    <td><span th:text="${message.snippet}"/></td>
+  </tr>
+</table>
+
+</body>
+</html>

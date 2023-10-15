@@ -1,7 +1,11 @@
 version: '3.3'
 
+networks:
+  backend:
+
 services:
   keycloak:
+    container_name: auth-exchange-token-keycloak
     build:
       dockerfile: ./Dockerfile
     ports:
@@ -10,3 +14,17 @@ services:
       KEYCLOAK_ADMIN: keycloak.admin
       KEYCLOAK_ADMIN_PASSWORD: keycloak.admin
       KC_FEATURES: token-exchange,admin-fine-grained-authz
+
+  db:
+    image: mysql:8.0.31
+    container_name: auth-exchange-token-db
+    ports:
+      - 33069:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ct_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_pass_123
+    command: mysqld --sql_mode="NO_ENGINE_SUBSTITUTION"
+    networks:
+      - backend

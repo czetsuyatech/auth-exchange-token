@@ -6,17 +6,24 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.0.6</version>
+    <version>3.1.0</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.czetsuyatech</groupId>
   <artifactId>auth-exchange-token</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Auth Token Exchange</name>
 
   <properties>
     <java.version>17</java.version>
     <keycloak.version>21.1.1</keycloak.version>
+    <mapstruct.version>1.5.3.Final</mapstruct.version>
+
+    <!-- Plugins -->
+    <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
+
+    <!-- Configs -->
+    <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
+    <delombok.output>${project.build.directory}/delombok</delombok.output>
   </properties>
 
   <dependencies>
@@ -37,14 +44,23 @@
       <artifactId>spring-boot-starter-oauth2-client</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-oauth2-authorization-server</artifactId>
+      <version>1.1.0</version>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>com.nimbusds</groupId>
-      <artifactId>oauth2-oidc-sdk</artifactId>
-      <version>10.8</version>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>8.0.32</version>
       <scope>runtime</scope>
     </dependency>
 
@@ -52,6 +68,12 @@
       <groupId>org.keycloak</groupId>
       <artifactId>keycloak-authz-client</artifactId>
       <version>${keycloak.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.4</version>
     </dependency>
 
     <dependency>
@@ -67,12 +89,12 @@
     <dependency>
       <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-calendar</artifactId>
-      <version>v3-rev20220715-2.0.0</version>
+      <version>v3-rev20230602-2.0.0</version>
     </dependency>
     <dependency>
       <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-gmail</artifactId>
-      <version>v1-rev20230206-2.0.0</version>
+      <version>v1-rev20230515-2.0.0</version>
     </dependency>
     <dependency>
       <groupId>com.google.http-client</groupId>
@@ -81,9 +103,25 @@
     </dependency>
 
     <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.10.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <scope>runtime</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -96,15 +134,64 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-test</artifactId>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.plugin.version}</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <compilerArgument>-Xlint:unchecked</compilerArgument>
+          <showDeprecation>true</showDeprecation>
+          <showWarnings>true</showWarnings>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${mapstruct.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok-mapstruct-binding</artifactId>
+              <version>0.2.0</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok-mapstruct-binding</artifactId>
+              <version>0.2.0</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok-maven-plugin</artifactId>
+        <version>${lombok-maven-plugin.version}</version>
+        <configuration>
+          <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+          <outputDirectory>${delombok.output}</outputDirectory>
+          <addOutputDirectory>false</addOutputDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>delombok</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>

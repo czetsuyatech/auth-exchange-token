@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Email Messages</title>
+</head>
+<body>
+<h1>Email Messages</h1>
+<table style="border-spacing: 2px; border: 1px solid black;">
+  <tr>
+    <th>Id</th>
+    <th>Thread Id</th>
+  </tr>
+  <tr th:each="item: ${email.messages}">
+    <td><a th:href="@{/email-messages/{id}(id=${item.id})}"><span th:text="${item.id}"/></a></td>
+    <td th:text="${item.threadId}"/>
+  </tr>
+</table>
+
+</body>
+</html>

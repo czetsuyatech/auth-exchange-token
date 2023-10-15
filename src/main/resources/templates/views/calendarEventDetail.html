@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calendar Event</title>
+</head>
+<body>
+<h1>Calendar Event</h1>
+
+<table style="border-spacing: 2px; border: 1px solid black;">
+    <tr>
+        <th>Etag</th>
+        <th>Id</th>
+        <th>Summary</th>
+    </tr>
+    <tr>
+        <td><span th:text="${calendarEvent.etag}"/></td>
+        <td><span th:text="${calendarEvent.id}"/></td>
+        <td><span th:text="${calendarEvent.summary}"/></td>
+    </tr>
+</table>
+
+</body>
+</html>

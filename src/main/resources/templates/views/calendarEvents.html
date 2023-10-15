@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calendar Events</title>
+</head>
+<body>
+<h1>Calendar Events</h1>
+Etag: <span th:text="${calendarEvents.etag}"/>
+<br/>
+Kind: <span th:text="${calendarEvents.kind}"/>
+<table style="border-spacing: 2px; border: 1px solid black;">
+    <tr>
+        <th>Id</th>
+        <th>Kind</th>
+        <th>Summary</th>
+    </tr>
+    <tr th:each="item: ${calendarEvents.items}">
+        <td>
+            <a th:href="${'/calendar-events/' + {calendarId} + '/events/' + {item.id}}"><th:block th:utext="${item.id}"/></a>
+        </td>
+        <td th:text="${item.kind}"/>
+        <td th:text="${item.summary}"/>
+    </tr>
+</table>
+
+</body>
+</html>
