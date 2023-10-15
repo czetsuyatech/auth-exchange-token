@@ -5,7 +5,6 @@ import com.czetsuyatech.google.api.services.oauth.TokenExchange;
 import com.czetsuyatech.google.api.services.oauth.TokenExchanger;
 import com.czetsuyatech.google.api.services.oauth.impl.GoogleTokenExchange;
 import com.czetsuyatech.google.api.web.filters.AccessTokenWrapper;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -14,13 +13,12 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -29,7 +27,6 @@ public class GmailServiceImpl implements GmailService, TokenExchanger {
 
   private final GoogleTokenExchange googleTokenExchange;
   private final AccessTokenWrapper accessTokenWrapper;
-  private final ObjectMapper OBJECT_MAPPER;
 
   @Override
   public ListMessagesResponse getMessages(int maxResults) {
