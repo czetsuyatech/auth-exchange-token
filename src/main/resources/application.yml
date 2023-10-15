@@ -50,7 +50,7 @@ spring:
         registration:
           keycloak:
             client-id: web-front
-            client-secret: 1dF4vDiOed5ff4fRepYrlqxBKPQYmujP
+            client-secret: ${KEYCLOAK_CLIENT_SECRET:1dF4vDiOed5ff4fRepYrlqxBKPQYmujP}
             authorization-grant-type: authorization_code
             redirect-uri: ${app.base-url}/login/oauth2/code/keycloak
             scope:
