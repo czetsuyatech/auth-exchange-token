@@ -45,7 +45,7 @@ Set the Keycloak's `secret` value.
 A Dockerfile is provided under the docker folder. To build the project from a docker image:
 
 ```
-docker build -f ./docker/Dockerfile -t siriusacm/sens-data-access-proto
+docker build -f ./docker/Dockerfile -t czetsuyatech/auth-exchange-token
 ```
 
 # Testing Steps
